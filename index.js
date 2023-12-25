@@ -6,10 +6,12 @@ import { createResponse } from "./lib/createResponse";
 import { processMiddleware } from "./lib/processMiddleware";
 import { handleCors } from "./lib/handleCors";
 import { runMiddleware } from "./lib/handleMiddlewareCustom";
-import path from 'path';
+import path from "path";
+import fs from "fs";
 
 let server;
 let middlewareStack = [];
+let staticPath;
 
 let corsOptions = {
   allowOrigin: "*",
@@ -17,7 +19,7 @@ let corsOptions = {
   allowHeaders: "Content-Type",
 };
 
-export function configureStatic(path){
+export function configureStatic(path) {
   staticPath = path;
 }
 
