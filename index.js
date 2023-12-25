@@ -4,14 +4,29 @@ import { parseQueryParams } from "./lib/query-params";
 import { readBody } from "./lib/read-body";
 import { createResponse } from "./lib/createResponse";
 import { processMiddleware } from "./lib/processMiddleware";
+import { handleCors } from "./lib/handleCors";
 
 let server;
+
+let corsOptions = {
+  allowOrigin: "*",
+  allowMethods: "GET, POST, PUT, DELETE",
+  allowHeaders: "Content-Type",
+};
+
+export function configureCors(options) {
+  corsOptions = {
+    ...corsOptions,
+    ...options,
+  };
+}
 
 export function _initServer_() {
   let routeTable = {};
 
   // Function to register a path with its corresponding callback, method, and middleware
   function registerPath(path, cb, method, middleware) {
+    handleCors(req, res, corsOptions)
     if (!routeTable[path]) {
       routeTable[path] = {};
     }

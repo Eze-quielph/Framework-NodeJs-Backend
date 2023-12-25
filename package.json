@@ -1,6 +1,6 @@
 {
   "name": "framework-nodejs-backend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "framework-nodejs-backend",
   "main": "index.js",
   "module": "index.ts",
