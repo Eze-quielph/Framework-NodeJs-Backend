@@ -6,6 +6,7 @@ import { createResponse } from "./lib/createResponse";
 import { processMiddleware } from "./lib/processMiddleware";
 import { handleCors } from "./lib/handleCors";
 import { runMiddleware } from "./lib/handleMiddlewareCustom";
+import path from 'path';
 
 let server;
 let middlewareStack = [];
@@ -15,6 +16,10 @@ let corsOptions = {
   allowMethods: "GET, POST, PUT, DELETE",
   allowHeaders: "Content-Type",
 };
+
+export function configureStatic(path){
+  staticPath = path;
+}
 
 export function configureCors(options) {
   corsOptions = {
@@ -44,6 +49,17 @@ export function _initServer_() {
       handleCors(req, res, corsOptions);
 
       await runMiddleware(req, res, middlewareStack);
+
+      const staticFilePath = path.join(staticPath, req.url);
+      if (
+        fs.existsSync(staticFilePath) &&
+        fs.statSync(staticFilePath).isFile()
+      ) {
+        const fileContent = fs.readFileSync(staticFilePath);
+        res.writeHead(200, { "Content-Type": "text/plain" });
+        res.end(fileContent);
+        return;
+      }
 
       const routes = Object.keys(routeTable);
       let parseMethod = "json";
