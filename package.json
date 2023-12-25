@@ -1,0 +1,14 @@
+{
+  "name": "framework-nodejs-backend",
+  "version": "1.0.0",
+  "description": "framework-nodejs-backend",
+  "main": "index.js",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
