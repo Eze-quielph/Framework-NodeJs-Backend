@@ -6,6 +6,7 @@ import { createResponse } from "./lib/createResponse";
 import { processMiddleware } from "./lib/processMiddleware";
 import { handleCors } from "./lib/handleCors";
 import { runMiddleware } from "./lib/handleMiddlewareCustom";
+import { CreateLogger } from "./lib/logger";
 import path from "path";
 import fs from "fs";
 
@@ -18,6 +19,8 @@ let corsOptions = {
   allowMethods: "GET, POST, PUT, DELETE",
   allowHeaders: "Content-Type",
 };
+
+export const Logger = new CreateLogger();
 
 export function configureStatic(path) {
   staticPath = path;
