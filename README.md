@@ -34,7 +34,7 @@ app.post("/products", (req, res) => {
   res.json(req.body);
 });
 
-app.get(
+app.get(  
   "/orders",
   (req, res, next) => {
     if (req.headers["authorization"] === "abc123") {
