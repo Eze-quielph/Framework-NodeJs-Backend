@@ -1,2 +1,5 @@
-node-modules
-.tgz
+view
+public
+node_modules
+.gitignore
+app.js

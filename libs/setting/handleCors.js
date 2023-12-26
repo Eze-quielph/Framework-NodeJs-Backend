@@ -1,4 +1,6 @@
-export function handleCors(req, res, options) {
+module.exports = {
+  handleCors: (req, res, options) => {
+    // Allow CORS
     res.setHeader("Access-Control-Allow-Origin", options.allowOrigin || "*");
     res.setHeader(
       "Access-Control-Allow-Methods",
@@ -8,4 +10,5 @@ export function handleCors(req, res, options) {
       "Access-Control-Allow-Headers",
       options.allowHeaders || "Content-Type"
     );
-}
+  },
+};
